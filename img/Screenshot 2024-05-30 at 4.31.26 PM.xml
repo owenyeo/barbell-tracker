@@ -1,0 +1,26 @@
+<annotation>
+	<folder>version=1&amp;uuid=B0A89D60-B594-49CA-AE4A-6A537DC063AA&amp;mode=compatible&amp;noloc=0.png</folder>
+	<filename>Screenshot 2024-05-30 at 4.31.26 PM.png</filename>
+	<path>/private/var/folders/qv/tcyy588s67s77ckcxzwq_8ph0000gn/T/com.apple.Photos.NSItemProvider/version=1&amp;uuid=B0A89D60-B594-49CA-AE4A-6A537DC063AA&amp;mode=compatible&amp;noloc=0.png/Screenshot 2024-05-30 at 4.31.26 PM.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>974</width>
+		<height>714</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>37</xmin>
+			<ymin>396</ymin>
+			<xmax>66</xmax>
+			<ymax>442</ymax>
+		</bndbox>
+	</object>
+</annotation>

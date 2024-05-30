@@ -1,0 +1,26 @@
+<annotation>
+	<folder>Desktop</folder>
+	<filename>Screenshot 2024-05-30 at 4.26.05 PM.png</filename>
+	<path>/Users/owenyeoo/Desktop/Screenshot 2024-05-30 at 4.26.05 PM.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>874</width>
+		<height>954</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>452</xmin>
+			<ymin>357</ymin>
+			<xmax>489</xmax>
+			<ymax>401</ymax>
+		</bndbox>
+	</object>
+</annotation>
