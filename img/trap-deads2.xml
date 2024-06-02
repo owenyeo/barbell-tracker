@@ -1,0 +1,26 @@
+<annotation>
+	<folder>barbell tracker</folder>
+	<filename>trap-deads2.webp</filename>
+	<path>C:\Users\Owen Ng\Pictures\barbell tracker\trap-deads2.webp</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>240</width>
+		<height>204</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>118</xmin>
+			<ymin>165</ymin>
+			<xmax>127</xmax>
+			<ymax>175</ymax>
+		</bndbox>
+	</object>
+</annotation>

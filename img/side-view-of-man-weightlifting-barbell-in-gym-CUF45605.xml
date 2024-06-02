@@ -1,0 +1,26 @@
+<annotation>
+	<folder>barbell tracker</folder>
+	<filename>side-view-of-man-weightlifting-barbell-in-gym-CUF45605.jpg</filename>
+	<path>C:\Users\Owen Ng\Pictures\barbell tracker\side-view-of-man-weightlifting-barbell-in-gym-CUF45605.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1232</width>
+		<height>821</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>438</xmin>
+			<ymin>229</ymin>
+			<xmax>472</xmax>
+			<ymax>265</ymax>
+		</bndbox>
+	</object>
+</annotation>

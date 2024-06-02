@@ -1,0 +1,26 @@
+<annotation>
+	<folder>barbell tracker</folder>
+	<filename>DL-for-EZ-strength.jpg</filename>
+	<path>C:\Users\Owen Ng\Pictures\barbell tracker\DL-for-EZ-strength.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>320</width>
+		<height>274</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>162</xmin>
+			<ymin>202</ymin>
+			<xmax>179</xmax>
+			<ymax>218</ymax>
+		</bndbox>
+	</object>
+</annotation>

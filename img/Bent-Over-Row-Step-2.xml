@@ -1,0 +1,26 @@
+<annotation>
+	<folder>barbell tracker</folder>
+	<filename>Bent-Over-Row-Step-2.jpg</filename>
+	<path>C:\Users\Owen Ng\Pictures\barbell tracker\Bent-Over-Row-Step-2.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>760</width>
+		<height>427</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>338</xmin>
+			<ymin>378</ymin>
+			<xmax>357</xmax>
+			<ymax>396</ymax>
+		</bndbox>
+	</object>
+</annotation>

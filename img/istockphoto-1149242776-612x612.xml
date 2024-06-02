@@ -1,0 +1,26 @@
+<annotation>
+	<folder>barbell tracker</folder>
+	<filename>istockphoto-1149242776-612x612.jpg</filename>
+	<path>C:\Users\Owen Ng\Pictures\barbell tracker\istockphoto-1149242776-612x612.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>612</width>
+		<height>408</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>320</xmin>
+			<ymin>143</ymin>
+			<xmax>340</xmax>
+			<ymax>164</ymax>
+		</bndbox>
+	</object>
+</annotation>

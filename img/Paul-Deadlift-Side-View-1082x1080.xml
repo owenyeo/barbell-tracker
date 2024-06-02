@@ -1,0 +1,26 @@
+<annotation>
+	<folder>barbell tracker</folder>
+	<filename>Paul-Deadlift-Side-View-1082x1080.webp</filename>
+	<path>C:\Users\Owen Ng\Pictures\barbell tracker\Paul-Deadlift-Side-View-1082x1080.webp</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1082</width>
+		<height>1080</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>456</xmin>
+			<ymin>941</ymin>
+			<xmax>503</xmax>
+			<ymax>985</ymax>
+		</bndbox>
+	</object>
+</annotation>

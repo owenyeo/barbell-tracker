@@ -1,31 +1,54 @@
 import os
-import pandas as pd
 import xml.etree.ElementTree as ET
 
-def xml_to_csv(path):
-    xml_list = []
-    for xml_file in os.listdir(path):
-        if xml_file.endswith('.xml'):
-            tree = ET.parse(os.path.join(path, xml_file))
-            root = tree.getroot()
-            for member in root.findall('object'):
-                value = (root.find('filename').text,
-                         int(root.find('size/width').text),
-                         int(root.find('size/height').text),
-                         member.find('name').text,
-                         int(member.find('bndbox/xmin').text),
-                         int(member.find('bndbox/ymin').text),
-                         int(member.find('bndbox/xmax').text),
-                         int(member.find('bndbox/ymax').text))
-                xml_list.append(value)
-    column_name = ['filename', 'width', 'height', 'class', 'xmin', 'ymin', 'xmax', 'ymax']
-    xml_df = pd.DataFrame(xml_list, columns=column_name)
-    return xml_df
+def convert_voc_to_yolo(voc_dir, yolo_dir, classes):
+    if not os.path.exists(yolo_dir):
+        os.makedirs(yolo_dir)
+    
+    for filename in os.listdir(voc_dir):
+        if not filename.endswith('.xml'):
+            continue
+        
+        # Parse the XML file
+        tree = ET.parse(os.path.join(voc_dir, filename))
+        root = tree.getroot()
+        
+        image_width = int(root.find('size/width').text)
+        image_height = int(root.find('size/height').text)
+        
+        yolo_annotations = []
+        
+        for obj in root.findall('object'):
+            class_name = obj.find('name').text
+            if class_name not in classes:
+                continue
+            class_id = classes.index(class_name)
+            
+            bndbox = obj.find('bndbox')
+            xmin = int(bndbox.find('xmin').text)
+            ymin = int(bndbox.find('ymin').text)
+            xmax = int(bndbox.find('xmax').text)
+            ymax = int(bndbox.find('ymax').text)
+            
+            # Convert to YOLO format
+            x_center = (xmin + xmax) / 2.0 / image_width
+            y_center = (ymin + ymax) / 2.0 / image_height
+            width = (xmax - xmin) / image_width
+            height = (ymax - ymin) / image_height
+            
+            yolo_annotations.append(f"{class_id} {x_center} {y_center} {width} {height}")
+        
+        # Save YOLO annotations to file
+        yolo_filename = os.path.join(yolo_dir, filename.replace('.xml', '.txt'))
+        with open(yolo_filename, 'w') as yolo_file:
+            yolo_file.write('\n'.join(yolo_annotations))
 
-def main():
-    xml_path = 'img'
-    xml_df = xml_to_csv(xml_path)
-    xml_df.to_csv('annotations.csv', index=False)
+# Define classes
+classes = ['barbell']
 
-if __name__ == '__main__':
-    main()
+# Define directories
+voc_dir = 'img'
+yolo_dir = 'data'
+
+# Convert VOC to YOLO format
+convert_voc_to_yolo(voc_dir, yolo_dir, classes)

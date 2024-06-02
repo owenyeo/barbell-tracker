@@ -1,0 +1,26 @@
+<annotation>
+	<folder>barbell tracker</folder>
+	<filename>Bad-Deadlift-Side-view.jpg</filename>
+	<path>C:\Users\Owen Ng\Pictures\barbell tracker\Bad-Deadlift-Side-view.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1024</width>
+		<height>576</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>barbell</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>501</xmin>
+			<ymin>512</ymin>
+			<xmax>531</xmax>
+			<ymax>539</ymax>
+		</bndbox>
+	</object>
+</annotation>
