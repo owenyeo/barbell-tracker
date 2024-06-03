@@ -5,6 +5,7 @@ import pandas
 from PIL import Image
 import numpy as np
 import math
+from datetime import datetime
 
 # Check if CUDA is available and use it
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -26,20 +27,24 @@ def scale_frame(frame, max_width, max_height):
 def euc_distance(pt1, pt2):
     return math.sqrt((pt1[0] - pt2[0])**2 + (pt1[1] - pt2[1])**2)
 
-def is_concentric(center_points, start_point, vector_threshold=8):
+def detect_movement(center_points, start_point, vector_threshold=8):
     if len(center_points) <= vector_threshold:
         vector_threshold = len(center_points) - 1
     diff = euc_distance(center_points[-vector_threshold], center_points[-1]) if len(center_points) > 1 else 0
     print(diff)
     if diff < 10:
-        return "Inflection"
+        return "Static"
+    elif is_racking(center_points, vector_threshold):
+        return "Racking"
     elif euc_distance(start_point, center_points[-vector_threshold]) < euc_distance(start_point, center_points[-1]):
-        return "Eccentric"
+        return "Away"
     else:
-        return "Concentric"
+        return "Towards"
 
 def is_racking(center_points, vector_threshold=8):
-    return True
+    x_diff = center_points[-1][0] - center_points[-vector_threshold][0]
+    y_diff = center_points[-1][1] - center_points[-vector_threshold][1]
+    return True if abs(x_diff) > abs(y_diff) else False
 
 
 # Initialize video capture for the webcam or a video file
@@ -84,6 +89,14 @@ else:
     exit()
 
 center_points = []
+rep_threshold = 2
+last_inflection_time = None
+min_distance_threshold = 100
+rep_count = 0
+curr_time = 0
+curr_phase = "Start"
+prev_phase = "Start"
+peak_point = start_point
 
 # Track the barbell in the live feed
 while True:
@@ -107,15 +120,27 @@ while True:
         center_x = int(bbox[0] + bbox[2] / 2)
         center_y = int(bbox[1] + bbox[3] / 2)
         center_points.append((center_x, center_y))
-
-        last_x = center_x
-        last_y = center_y
+        box_height_pix = bbox[3] - bbox[1]
+        barbell_diameter = 6
 
         # Draw lines connecting the center points
         for i in range(1, len(center_points)):
             cv2.line(frame, center_points[i - 1], center_points[i], (0, 255, 0), 2)
         
-        cv2.putText(frame, f"Current phase: {is_concentric(center_points, start_point)}", (100, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+        curr_phase = detect_movement(center_points, start_point)
+        # Count reps based on state transitions and distance
+        if curr_phase == "Away" and prev_phase == "Towards":
+            peak_point = center_points[-1]  # Track the highest point during upward movement
+        
+        if curr_phase == "Towards" and prev_phase == "Away" and peak_point is not None:
+            vertical_distance = abs(center_points[-1][1] - peak_point[1])
+            if vertical_distance >= min_distance_threshold:
+                rep_count += 1
+                print(f"Rep count: {rep_count}")
+        
+        prev_phase = curr_phase if curr_phase != "Static" and curr_phase != "Racking" else prev_phase
+        cv2.putText(frame, f"Current phase: {curr_phase}", (100, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+        cv2.putText(frame, f"Rep Count: {rep_count}", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
 
     else:
         # Tracking failure
